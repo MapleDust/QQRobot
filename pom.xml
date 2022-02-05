@@ -6,7 +6,7 @@
 
     <groupId>xyz.fcidd</groupId>
     <artifactId>qq-robot</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 
     <properties>
         <!-- 设置 JDK 版本为 1.8 -->

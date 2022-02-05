@@ -14,7 +14,7 @@ public class UrlUtil {
      * @return 响应内容
      * @throws IOException
      */
-    public String getResult(String url) throws IOException {
+    public static String getResult(String url) throws IOException {
         URLConnection connection = new URL(url).openConnection();
         // 设置通用的请求属性
         connection.setRequestProperty("accept", "*/*");

@@ -2,7 +2,6 @@ package xyz.fcidd.robot.service.impl;
 
 import cn.hutool.core.date.DateTime;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import love.forte.simbot.api.sender.Sender;
@@ -13,6 +12,7 @@ import xyz.fcidd.robot.utils.mcping.MinecraftPing;
 import xyz.fcidd.robot.utils.mcping.MinecraftPingOptions;
 import xyz.fcidd.robot.utils.mcping.MinecraftPingReply;
 import xyz.fcidd.robot.utils.url.UrlUtil;
+import xyz.fcidd.robot.utils.uuid.UUIDUtils;
 
 @Service
 @Log4j2
@@ -46,17 +46,11 @@ public class GroupServiceImpl implements GroupService {
      */
     @Override
     public void nowTime(GroupDTO groupDTO) {
-		//获取群消息
         String groupMsgText = groupDTO.getGroupMsgText();
-		//获取sender
         Sender sender = groupDTO.getSender();
-		//获取群号
         String groupCode = groupDTO.getGroupCode();
-		//获取群名
         String groupName = groupDTO.getGroupName();
-		//获取机器人昵称
         String botName = groupDTO.getBotName();
-		//获取机器人QQ号
         String botCode = groupDTO.getBotCode();
         //如果群消息是"现在时间"
         if (groupMsgText.equals("现在时间")) {
@@ -96,13 +90,13 @@ public class GroupServiceImpl implements GroupService {
                 //请求mojang api服务器
                 String mcUsername = strings[1];
                 String url = "https://api.mojang.com/users/profiles/minecraft/" + mcUsername;
-                //将响应的内容执行json解析
-                String result = new UrlUtil().getResult(url);
-                JSONObject jsonObject = JSON.parseObject(result);
-                //获取解析过后的uuid
-                String uuid = jsonObject.getString("id");
+                String result = UrlUtil.getResult(url);
+                //将响应的内容执行json解析并且返回玩家的uuid
+                String uuid = JSON.parseObject(result).getString("id");
+                //由于mojang api服务器将”-“处理掉了,将”-“添加回去
+                String fullUUID = UUIDUtils.fullUUID(uuid);
                 //将用户名和uuid发送到群
-                String msg = "用户名：" + mcUsername + "\n" + "uuid：" + uuid;
+                String msg = "用户名：" + mcUsername + "\n" + "uuid：" + fullUUID;
                 sender.sendGroupMsg(groupCode, msg);
                 //输出日志
                 log.info("[↑][群][{}({})]{}({}):{}", groupName, groupCode, botName, botCode, msg);
@@ -125,19 +119,14 @@ public class GroupServiceImpl implements GroupService {
     public void serverPing(GroupDTO groupDTO) {
         //获取群消息
         String groupMsgText = groupDTO.getGroupMsgText();
-		//获取群名
         String groupName = groupDTO.getGroupName();
-		//获取群号
         String groupCode = groupDTO.getGroupCode();
-		//获取sender
         Sender sender = groupDTO.getSender();
-		//获取机器人昵称
         String botName = groupDTO.getBotName();
-		//获取机器人QQ号
         String botCode = groupDTO.getBotCode();
         try {
             //如果群消息是"fz ping"
-            if (groupMsgText.equalsIgnoreCase("server ping")) {
+            if (groupMsgText.equalsIgnoreCase("fz ping")) {
                 //尝试ping目标服务器
                 MinecraftPingReply serverPing = new MinecraftPing().getPing(new MinecraftPingOptions().setHostname(""));
                 //获取在线玩家的昵称
