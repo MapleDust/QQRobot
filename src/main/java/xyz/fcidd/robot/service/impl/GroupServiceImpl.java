@@ -125,8 +125,8 @@ public class GroupServiceImpl implements GroupService {
         String botName = groupDTO.getBotName();
         String botCode = groupDTO.getBotCode();
         try {
-            //如果群消息是"fz ping"
-            if (groupMsgText.equalsIgnoreCase("fz ping")) {
+            //如果群消息是"server ping"
+            if (groupMsgText.equalsIgnoreCase("server ping")) {
                 //尝试ping目标服务器
                 MinecraftPingReply serverPing = new MinecraftPing().getPing(new MinecraftPingOptions().setHostname(""));
                 //获取在线玩家的昵称
