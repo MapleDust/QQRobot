@@ -25,10 +25,10 @@ public class UrlUtil {
         // 定义 BufferedReader输入流来读取URL的响应
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String line;
-        String result = "";
+        StringBuilder result = new StringBuilder();
         while ((line = in.readLine()) != null) {
-            result += line;
+            result.append(line);
         }
-        return result;
+        return result.toString();
     }
 }
