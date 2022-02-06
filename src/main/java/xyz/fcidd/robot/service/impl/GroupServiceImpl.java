@@ -141,7 +141,10 @@ public class GroupServiceImpl implements GroupService {
                 log.info("[↑][群][{}({})]{}({}):{}", groupName, groupCode, botName, botCode, serverPingInfoMsg);
             }
         }catch (Exception e){
-            sender.sendGroupMsg(groupCode,"服务器已关闭或者连接超时");
+            //有可能会出现ping不到服务器的问题，将消息发送到群
+            sender.sendGroupMsg(groupCode, "服务器已关闭或者连接超时");
+            //输出日志
+            log.info("[↑][群][{}({})]{}({}):{}", groupName, groupCode, botName, botCode, "服务器已关闭或者连接超时");
         }
 
     }
