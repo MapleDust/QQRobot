@@ -74,6 +74,6 @@ public class MyGroupListen {
         //查询mc玩家的uuid并发送至群和输出到控制台
         groupService.mcUuid(groupDTO);
         //将服务器信息发送到群并输出控制台
-        groupService.fzPing(groupDTO);
+        groupService.serverPing(groupDTO);
     }
 }
