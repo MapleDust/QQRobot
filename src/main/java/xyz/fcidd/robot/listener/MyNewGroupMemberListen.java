@@ -1,5 +1,6 @@
 package xyz.fcidd.robot.listener;
 
+import lombok.extern.log4j.Log4j2;
 import love.forte.common.ioc.annotation.Beans;
 import love.forte.common.ioc.annotation.Depend;
 import love.forte.simbot.annotation.OnGroupAddRequest;
@@ -14,8 +15,6 @@ import love.forte.simbot.api.message.events.GroupAddRequest;
 import love.forte.simbot.api.message.events.GroupMemberIncrease;
 import love.forte.simbot.api.sender.Sender;
 import love.forte.simbot.api.sender.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author ForteScarlet
  */
 @Beans
+@Log4j2
 public class MyNewGroupMemberListen {
 
     /**
@@ -38,11 +38,6 @@ public class MyNewGroupMemberListen {
      * 用来缓存入群申请的时候所填的信息。
      */
     private static final Map<String, String> REQUEST_TEXT_MAP = new ConcurrentHashMap<>();
-
-    /**
-     * logger
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(MyNewGroupMemberListen.class);
 
     /**
      * {@link OnGroupAddRequest} 是一个模板注解，其等同于 {@code @Listen(GroupAddRequest.class)},
@@ -77,7 +72,7 @@ public class MyNewGroupMemberListen {
             }
             GroupInfo groupInfo = groupAddRequest.getGroupInfo();
 
-            LOGGER.info("{}({}) 申请加入群 {}({}), 申请备注：{}",
+            log.info("{}({}) 申请加入群 {}({}), 申请备注：{}",
                     accountInfo.getAccountNickname(), accountInfo.getAccountCode(),
                     groupInfo.getGroupName(), groupInfo.getGroupCode(),
                     text

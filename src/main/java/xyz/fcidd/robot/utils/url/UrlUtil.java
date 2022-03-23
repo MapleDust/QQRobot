@@ -19,7 +19,7 @@ public class UrlUtil {
         // 设置通用的请求属性
         connection.setRequestProperty("accept", "*/*");
         connection.setRequestProperty("connection", "keep-alive");
-        connection.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36");
+        connection.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36");
         // 建立实际的连接
         connection.connect();
         // 定义 BufferedReader输入流来读取URL的响应

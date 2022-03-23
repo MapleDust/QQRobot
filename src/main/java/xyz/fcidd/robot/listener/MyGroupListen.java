@@ -56,7 +56,7 @@ public class MyGroupListen {
         //获取群成员的QQ号
         groupDTO.setGroupAccountCode(groupAccountInfo.getAccountCode());
         //获取群消息
-        groupDTO.setGroupMsgText(groupMsg.getText());
+        groupDTO.setGroupMsgText(groupMsg.getMsg());
         //获取机器人昵称
         groupDTO.setBotName(botInfo.getBotName());
         //获取机器人的QQ号
@@ -75,5 +75,7 @@ public class MyGroupListen {
         groupService.mcUuid(groupDTO);
         //将服务器信息发送到群并输出控制台
         groupService.serverPing(groupDTO);
+        //
+        groupService.randomImage(groupDTO);
     }
 }

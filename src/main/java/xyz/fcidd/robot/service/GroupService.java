@@ -11,4 +11,6 @@ public interface GroupService {
     void mcUuid(GroupDTO groupDTO);
     //将服务器信息发送到群并输出控制台
     void serverPing(GroupDTO groupDTO);
+    //随机图片
+    void randomImage(GroupDTO groupDTO);
 }
