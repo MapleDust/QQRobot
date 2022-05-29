@@ -46,12 +46,20 @@
       #数据库的密码
       spring.datasource.password=数据库的密码（必填）
       ```
+- 以上操作完成后在根目录下新建bat脚本(linux新建sh脚本)
 
+    ```bash
+    @echo off
+    java -jar qq-robot-2.1.0.jar
+    pause
+    ```
+    
 - 指令
   - 现在时间——返回现在年月日时分秒
   - mcuuid [mc正版用户名] ——返回玩家的uuid
   - server ping—— 返回目标服务的`服务端版本` `当前在线玩家`(需要编辑机器人配置文件夹)
   - 随机图片——返回api服务器的图片（建议使用二次元随机图片的api效果更佳）
+
 - 升级注意事项
   - 在每次升级中请将原来的`config.properties`重命名或者移动到其他文件夹，然后根据根据实际情况填写配置（懒）
 
