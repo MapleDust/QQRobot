@@ -47,7 +47,7 @@
       spring.datasource.password=数据库的密码（必填）
       ```
  
- - 以上操作完成后在根目录下新建bat脚本(linux新建sh脚本)
+  - 以上操作完成后在根目录下新建bat脚本(linux新建sh脚本)
 
     ```bash
     @echo off
