@@ -63,6 +63,7 @@ public class Initializing {
                 output.write(data, 0, len);
             }
             log.warn("请打开simbot-bots文件夹下的bot1.bot编辑机器人信息后重新运行");
+            log.warn("请编辑config.properties输入正确的数据库信息");
             //停止运行
             throw new RuntimeException();
         }

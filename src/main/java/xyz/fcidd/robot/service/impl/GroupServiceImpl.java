@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.fcidd.robot.config.RobotConfig;
 import xyz.fcidd.robot.dto.GroupDTO;
+import xyz.fcidd.robot.dto.GroupMessageDTO;
+import xyz.fcidd.robot.mapper.GroupMapper;
 import xyz.fcidd.robot.service.GroupService;
 import xyz.fcidd.robot.utils.mcping.MinecraftPing;
 import xyz.fcidd.robot.utils.mcping.MinecraftPingOptions;
@@ -23,6 +25,9 @@ import java.util.HashMap;
 public class GroupServiceImpl implements GroupService {
     @Autowired
     private RobotConfig robotConfig;
+
+    @Autowired
+    private GroupMapper groupMapper;
 
     /**
      * 将群消息输出到控制台
@@ -41,6 +46,15 @@ public class GroupServiceImpl implements GroupService {
         String groupAccountCode = groupDTO.getGroupAccountCode();
         //获取群消息
         String groupMsgText = groupDTO.getGroupMsgText();
+        //将消息写入数据库
+        GroupMessageDTO groupMessageDTO = new GroupMessageDTO();
+        groupMessageDTO.setGroupCode(groupCode);
+        groupMessageDTO.setGroupName(groupName);
+        groupMessageDTO.setAccountCode(groupAccountCode);
+        groupMessageDTO.setAccountName(groupAccountNickname);
+        groupMessageDTO.setMessageText(groupMsgText);
+        groupMessageDTO.setSendTime(DateTime.now());
+        groupMapper.groupMessageInsert(groupMessageDTO);
         //输出到控制台
         log.info("[↓][群][{}({})]{}({}):{}", groupName, groupCode, groupAccountNickname, groupAccountCode, groupMsgText);
     }
