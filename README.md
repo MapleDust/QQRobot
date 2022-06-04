@@ -8,6 +8,8 @@
 
 - 使用说明
 
+  - 在版本`v2.1.0`及以后需要数据的支持
+
   - 下载 [releases](https://github.com/MapleDust/QQRobot/releases)中的jar文件和sql脚本
 
   - 确保`需要环境`都成功安装，首次运行需要在数据库里运行sql脚本
@@ -15,7 +17,7 @@
   - 在任意处新建文件夹名字随便取，将从`Releases`上下载的jar包直接放入刚刚新建的文件夹
 
   - 首次运行需要编辑`simbot-bots`文件夹下的`bot1.bot`文件（建议使用小号）和根目录文件夹下的`config.properties`
-
+  
   - 聊天记录将保存到数据库里，后期可以在`robot`数据库中的`message`表里查询到聊天记录（后面可能在新的项目中有web后台管理）
   
     - `bot1.bot`配置文件示例
@@ -24,7 +26,7 @@
       code=机器人的QQ账号（必填）
       password=机器人的QQ密码（必填）
       ```
-
+  
     - `config.properties`配置文件实例
   
       ```properties
@@ -46,15 +48,15 @@
       #数据库的密码
       spring.datasource.password=数据库的密码（必填）
       ```
- 
-  - 以上操作完成后在根目录下新建bat脚本(linux新建sh脚本)
 
+  - 以上操作完成后在根目录下新建bat脚本(linux新建sh脚本)
+  
     ```bash
     @echo off
     java -jar qq-robot-2.1.0.jar
     pause
     ```
-    
+  
 - 指令
   - 现在时间——返回现在年月日时分秒
   - mcuuid [mc正版用户名] ——返回玩家的uuid
@@ -64,8 +66,16 @@
 - 升级注意事项
   - 在每次升级中请将原来的`config.properties`重命名或者移动到其他文件夹，然后根据根据实际情况填写配置（懒）
 
-
+- 更新日志
+  - v2.2.0
+    - 新增每日0点群消息条数播报
+  - v2.1.0
+    - 新增聊天记录储存到数据库
+  - v2.0.0
+    - 新增系统时间查询
+    - 新增根据mc正版的用户名查询mcuuid
+    - 新增根据IP地址来mc服务器的信息
+    - 新增根据api服务器返回随机图片
 
 
 大概是这些功能了，欢迎大家在`issues`提交建议哦~
-

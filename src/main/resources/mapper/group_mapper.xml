@@ -12,8 +12,16 @@
         <result column="send_time" property="sendTime"/>
     </resultMap>
 
-    <insert id="groupMessageInsert" >
-        insert into message values (null,#{groupName},#{groupCode},#{accountName},#{accountCode},#{messageText},#{sendTime})
+    <insert id="groupMessageInsert">
+        insert into message
+        values (null, #{groupName}, #{groupCode}, #{accountName}, #{accountCode}, #{messageText}, #{sendTime})
     </insert>
+
+    <select id="groupMessageCount" resultType="java.lang.Integer">
+        select count(group_code)
+        from message
+        where send_time like #{time}
+          and group_code = #{groupCode};
+    </select>
 
 </mapper>
